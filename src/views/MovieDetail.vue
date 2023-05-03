@@ -1,10 +1,78 @@
 <template>
-  <div class="movie-detail">Detail {{ $route.params.id }}</div>
+  <div class="movie-detail">
+    <h2>{{ movie.Title }}</h2>
+    <p>{{ movie.Year }}</p>
+    <img :src="movie.Poster" alt="Movie Poster" class="featured-img" />
+    <p>{{ movie.Plot }}</p>
+  </div>
 </template>
 
 <script>
-export default {};
+import { ref, onBeforeMount } from "vue";
+// import { useRoute } from "vue-router";
+import env from "@/env.js";
+
+export default {
+  props: {
+    route: {
+      type: Object,
+      required: true,
+    },
+  },
+  setup(props) {
+    const movie = ref({});
+
+    onBeforeMount(async () => {
+      const response = await fetch(
+        `http://www.omdbapi.com/?apikey=${env.apikey}&i=${props.route.params.id}&plot=full`
+      );
+      const data = await response.json();
+      movie.value = data;
+    });
+
+    return {
+      movie,
+    };
+  },
+  // setup() {
+  //   const movie = ref({});
+  //   const route = useRoute();
+
+  //   onBeforeMount(() => {
+  //     fetch(
+  //       `http://www.omdbapi.com/?apikey=${env.apikey}&i=${route.params.id}&plot=full`
+  //     )
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //       });
+  //   });
+
+  //   return {
+  //     movie,
+  //   };
+  // },
+};
 </script>
 
 <style>
+.movie-detail {
+  padding: 16px;
+}
+h2 {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.featured-img {
+  display: block;
+  max-width: 200px;
+  margin-bottom: 16px;
+}
+p {
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.4;
+}
 </style>

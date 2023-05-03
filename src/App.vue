@@ -2,11 +2,11 @@
   <div id="app">
     <header>
       <router-link to="/">
-      <h1><span>Vue</span>Movies</h1>
+        <h1><span>Jarvi's </span>Movie App</h1>
       </router-link>
     </header>
     <main>
-    <router-view/>
+      <router-view />
     </main>
   </div>
 </template>
@@ -16,8 +16,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Fira Sans', sans-serif;
-  background: transparent(#42B883, 0.5);
+  font-family: "Fira Sans", sans-serif;
+  background: transparent(#42b883, 0.5);
 }
 
 body {
@@ -42,6 +42,6 @@ h1 {
   font-size: 28px;
 }
 span {
-  color: #42B883;
+  color: #42b883;
 }
 </style>

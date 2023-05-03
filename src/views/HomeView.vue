@@ -17,17 +17,59 @@
         </div>
       </router-link>
     </div>
-    <form @submit.prevent="" class="search-box">
-      <input type="text" placeholder="What are you looking for?" />
-      <input type="submit" value="search" />
+    <form @submit.prevent="SearchMovies()" class="search-box">
+      <input
+        type="text"
+        placeholder="What are you looking for?"
+        v-model="search"
+      />
+      <input type="submit" value="Search" />
     </form>
 
-    <div class="movies-">Movies</div>
+    <div class="movies-list">
+      <div class="movie" v-for="movie in movies" :key="movie.imdbID">
+        <router-link :to="'/movie/' + movie.imdbID" class="movie-link">
+          <div class="product-image">
+            <img :src="movie.Poster" alt="Movie Poster" />
+            <div class="movie-type">{{ movie.Type }}</div>
+          </div>
+          <div class="movie-detail">
+            <p class="year">{{ movie.Year }}</p>
+            <h3>{{ movie.Title }}</h3>
+          </div>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+import env from "@/env.js";
+
+export default {
+  setup() {
+    const search = ref("");
+    const movies = ref([]);
+
+    const SearchMovies = () => {
+      if (search.value !== "") {
+        fetch(`http://www.omdbapi.com/?apikey=${env.apikey}&s=${search.value}`)
+          .then((response) => response.json())
+          .then((data) => {
+            movies.value = data.Search;
+            search.value = "";
+          });
+      }
+    };
+
+    return {
+      search,
+      movies,
+      SearchMovies,
+    };
+  },
+};
 </script>
 
 <style>
@@ -106,5 +148,58 @@ input[type="submit"] {
 }
 input[type="submit"]:active {
   background-color: #3b8070;
+}
+
+.movies-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px 8px;
+}
+
+.movie {
+  max-width: 50%;
+  flex: 1 1 50%;
+  padding: 16px 8px;
+}
+
+.movie-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.product-image {
+  position: relative;
+  display: block;
+}
+
+.product-image img {
+  display: block;
+  width: 100%;
+  height: 275px;
+  object-fit: cover;
+}
+.movie-type {
+  position: absolute;
+  padding: 8px 16px;
+  background-color: #42b883;
+  color: #fff;
+  bottom: 16px;
+  left: 0px;
+  text-transform: capitalize;
+}
+.movie-detail {
+  background-color: #496583;
+  padding: 16px 8px;
+  flex: 1 1 100%;
+  border-radius: 0px 0px 8px 8px;
+}
+.year {
+  color: #aaa;
+  font-size: 14px;
+}
+.movie h3 {
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
 }
 </style>

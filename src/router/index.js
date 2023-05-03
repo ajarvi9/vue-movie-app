@@ -1,4 +1,5 @@
 import Vue from 'vue'
+// import { createRouter, createWebHistory } from 'vue-router'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import MovieDetail from '../views/MovieDetail.vue'
@@ -14,8 +15,9 @@ const routes = [
   },
   {
     path: '/movie/:id',
-    name: 'Movie Detail',
-    component: MovieDetail
+    name: 'MovieDetail',
+    component: MovieDetail,
+    props: (route) => ({ route: route }),
   }
 
 ]
@@ -25,5 +27,10 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+// const router = createRouter({
+//   history: createWebHistory(process.env.BASE_URL),
+//   routes
+// })
 
 export default router
