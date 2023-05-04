@@ -3,16 +3,20 @@
     <div class="feature-card">
       <router-link to="/movie/tt0409591">
         <img
-          src="https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-          alt="Naruto Poster"
+          src="https://m.media-amazon.com/images/I/71TZ8BmoZqL._AC_SL1000_.jpg"
+          alt="LOTR Poster"
           class="featured-img"
         />
         <div class="detail">
-          <h3>Naruto</h3>
+          <h3>The Fellowship of the Ring</h3>
           <p>
-            Naruto Uzumaki, a mischievous adolescent ninja, struggles as he
-            searches for recognition and dreams of becoming the Hokage, the
-            village's leader and strongest ninja.
+            The future of civilization rests in the fate of the One Ring, which
+            has been lost for centuries. Powerful forces are unrelenting in
+            their search for it. But fate has placed it in the hands of a young
+            Hobbit named Frodo Baggins (Elijah Wood), who inherits the Ring and
+            steps into legend. A daunting task lies ahead for Frodo when he
+            becomes the Ringbearer - to destroy the One Ring in the fires of
+            Mount Doom where it was forged.
           </p>
         </div>
       </router-link>
@@ -75,6 +79,9 @@ export default {
 <style>
 .feature-card {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .feature-img {
   display: block;
@@ -149,23 +156,51 @@ input[type="submit"] {
 input[type="submit"]:active {
   background-color: #3b8070;
 }
-
-.movies-list {
+/* .movies-list {
   display: flex;
   flex-wrap: wrap;
-  margin: 0px 8px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .movie {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 300px;
+  margin: 16px;
+  padding: 16px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+} */
+
+.movies-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0px 10px;
+}
+
+.movie {
+  width: 200px;
+  height: 100%;
+  /* width: 100%;
   max-width: 50%;
-  flex: 1 1 50%;
-  padding: 16px 8px;
+  flex: 1 1 50%; */
+  margin: 8px 8px;
+  box-shadow: 3px 6px 3px 6px rgba(0, 0, 0, 0.2);
+
+  /* padding: 16px 8px; */
 }
 
 .movie-link {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 375px;
 }
 .product-image {
   position: relative;
@@ -190,6 +225,7 @@ input[type="submit"]:active {
 .movie-detail {
   background-color: #496583;
   padding: 16px 8px;
+  height: 100px;
   flex: 1 1 100%;
   border-radius: 0px 0px 8px 8px;
 }

@@ -21,7 +21,7 @@
 }
 
 body {
-  background-color: #35495e;
+  background-color: #355e5e;
 }
 
 a {
@@ -32,9 +32,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100px;
+  margin-bottom: 10px;
   padding: 10px 16px;
   background-color: #2c3d4e;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
