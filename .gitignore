@@ -23,4 +23,4 @@ pnpm-debug.log*
 *.sw?
 
 #ignore env.js specific file
-/src/env.js
+src/env.js
